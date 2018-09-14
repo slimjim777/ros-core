@@ -1,0 +1,23 @@
+name: ros-core-james
+version: '1.0'
+grade: stable
+confinement: strict
+summary: ROS Core Snap
+description: Runs the ROS core master node
+passthrough:
+  base: core18-ros-james
+
+apps:
+  master:
+    command: run-master
+    daemon: simple
+    restart-condition: never
+    plugs: [network, network-bind]
+
+parts:
+  run-master:
+    plugin: dump
+    stage:
+      - bin/run-master
+    prime: 
+      - bin/run-master
